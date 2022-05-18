@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
 }
 
 body{
@@ -86,3 +87,51 @@ div.wrapper{
     padding: 0 40px;
 }
 
+div.login{
+    background-color: white;
+    max-width: 600px;
+    padding: 40px 10px;
+    width: 100%;
+}
+
+main.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 126px);
+    color: black;
+    padding: 20px ;
+}
+
+form.login-form > * {
+    display: block;
+    width: 50%;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+form.login-form > input {
+    border: 1px solid #d1d1d1;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+form.login-form p{
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+form.login-form button{
+    background-color: transparent;
+    border: 1px solid red;
+    cursor: pointer;
+
+}
+
+form.login-form button:hover{
+    background-color: red;
+    color: white;
+    
+}
