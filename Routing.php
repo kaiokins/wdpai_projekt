@@ -3,6 +3,7 @@
 require_once __DIR__.'/controllers/DashboardController.php';
 require_once __DIR__.'/controllers/ProjectsController.php';
 require_once __DIR__.'/controllers/LoginController.php';
+require_once __DIR__.'/controllers/ContactController.php';
 
 class Router {
 
