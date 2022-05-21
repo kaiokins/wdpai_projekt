@@ -87,11 +87,14 @@ div.wrapper{
     padding: 0 40px;
 }
 
+/* ---- LOGIN ----- */
+
 div.login{
     background-color: white;
     max-width: 600px;
     padding: 40px 10px;
     width: 100%;
+    border-radius: 4px;
 }
 
 main.login{
@@ -136,6 +139,8 @@ form.login-form button:hover{
     
 }
 
+/* ---- CONTACT ----- */
+
 div.contact{
     background-color: white;
     max-width: 900px;
@@ -143,6 +148,7 @@ div.contact{
     width: 100%;
     display: flex;
     align-items: center;
+    border-radius: 4px;
 }
 
 div.contact-form-wrapper{
@@ -208,4 +214,79 @@ div.about p:first-child{
 
 div.about div{
     padding: 15px;
+}
+
+
+/* ---- RANKING ----- */
+
+div.ranking-wrapper{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 80px 0;
+    padding: 0 30px;
+}
+
+div.ranking-wrapper input, div.sort, div.game{
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+div.ranking-wrapper input:first-child{
+    max-width: 800px;
+    width: 100%;
+    padding: 10px 10px;
+}
+
+div.ranking-wrapper div.sort{
+    max-width: 800px;
+    width: 100%;
+    background-color: white;
+    color: black;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+div.game-img img{
+    min-width: 200px;
+    max-width: 200px;    
+}
+
+div.ranking-wrapper .sort{
+    display: flex;
+    padding: 0 30px;
+}
+
+div.ranking-wrapper div.sort p{
+    padding: 0 30px;
+}
+
+div.game{
+    display: flex;
+    max-width: 90%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    color: black;
+}
+
+div.game .game-img, .game-info, .game-desc, .game-rate{
+    margin: 15px;
+}
+
+div.game .game-info{
+    width: 60%;
+}
+
+div.game .game-rate{
+    padding: 15px;
+    background-color: #03dc15e9;
+    text-align: center;
+    font-size: 3rem;
+}
+
+div.game .game-desc{
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    padding: 0 30px;
 }

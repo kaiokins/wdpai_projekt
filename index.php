@@ -9,5 +9,7 @@ Router::get('dashboard', 'DashboardController');
 Router::get('projects', 'ProjectsController');
 Router::get('login', 'LoginController');
 Router::get('contact', 'ContactController');
+Router::get('addgame', 'AddGameController');
+Router::get('ranking', 'RankingController');
 
 Router::run($path);
