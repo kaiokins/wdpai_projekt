@@ -18,6 +18,8 @@ img.logo{
     margin-left: 40px;
 }
 
+/* ------------- NAVBAR ------------- */
+
 div.nav{
     display: flex;
     justify-content: space-between;
@@ -43,16 +45,17 @@ div.nav ul li a:hover{
     color: gray;
 }
 
-a.button{
-    color: white;
-    border: 1px solid red;
-    text-decoration: none;
-    padding: 10px 35px;
-}
+/* ------------- INDEX ------------- */
 
-a.button:hover{
-    color: white;
-    background-color: red;
+div.wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    max-width: 1500px;
+    min-height: calc(100vh - 126px);
+    margin: 0 auto;
+    padding: 0 40px;
 }
 
 div.main{
@@ -76,18 +79,19 @@ p.text{
     margin-bottom: 30px;
 }
 
-div.wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    max-width: 1500px;
-    min-height: calc(100vh - 126px);
-    margin: 0 auto;
-    padding: 0 40px;
+a.button{
+    color: white;
+    border: 1px solid red;
+    text-decoration: none;
+    padding: 10px 35px;
 }
 
-/* ---- LOGIN ----- */
+a.button:hover{
+    color: white;
+    background-color: red;
+}
+
+/* ------------- LOGIN ------------- */
 
 div.login{
     background-color: white;
@@ -139,7 +143,21 @@ form.login-form button:hover{
     
 }
 
-/* ---- CONTACT ----- */
+form.login-form p > i{
+    color: red;
+}
+
+
+/* ------------- CONTACT ------------- */
+
+main.contact-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 126px);
+    color: black;
+    padding: 20px ;
+}
 
 div.contact{
     background-color: white;
@@ -153,15 +171,6 @@ div.contact{
 
 div.contact-form-wrapper{
     flex-basis: 70%;
-}
-
-main.contact{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 126px);
-    color: black;
-    padding: 20px ;
 }
 
 form.contact-form > * {
@@ -193,13 +202,11 @@ form.contact-form button{
     background-color: transparent;
     border: 1px solid red;
     cursor: pointer;
-
 }
 
 form.contact-form button:hover{
     background-color: red;
     color: white;
-    
 }
 
 div.about p:first-child i{
@@ -216,8 +223,7 @@ div.about div{
     padding: 15px;
 }
 
-
-/* ---- RANKING ----- */
+/* ------------- RANKING ------------- */
 
 div.ranking-wrapper{
     display: flex;
@@ -289,4 +295,60 @@ div.game .game-desc{
     border-left: 1px solid black;
     border-right: 1px solid black;
     padding: 0 30px;
+}
+
+/* ----------------- ADD GAME ------------- */
+
+main.addgame-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 126px);
+    color: black;
+    padding: 20px ;
+}
+
+div.addgame{
+    background-color: white;
+    max-width: 600px;
+    padding: 40px 10px;
+    width: 100%;
+    border-radius: 4px;
+}
+
+form.addgame-form > * {
+    display: block;
+    width: 50%;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+form.addgame-form > input, textarea {
+    border: 1px solid #d1d1d1;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+form.addgame-form p{
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+form.addgame-form button{
+    background-color: transparent;
+    border: 1px solid red;
+    cursor: pointer;
+
+}
+
+form.addgame-form button:hover{
+    background-color: red;
+    color: white;
+    
+}
+
+form.addgame-form p > i{
+    color: red;
 }

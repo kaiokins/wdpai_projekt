@@ -15,7 +15,7 @@
 
 <body>
       <div class="nav">
-            <img src="/assets/img/logo.png" alt="GameRate" class="logo">
+            <a class="logo" href="/"><img src="/assets/img/logo.png" alt="GameRate" class="logo"></a>
             <ul>
                   <li><a href="/" class="href">Główna</a></li>
                   <li><a href="/ranking" class="href">Ranking gier</a></li>
@@ -24,6 +24,20 @@
                   <li><a href="/login" class="href">Logowanie</a></li>
             </ul>
       </div>
+
+      <main class="addgame-wrapper">
+            <div class="addgame">
+                  <form class="addgame-form">
+                        <p><i class="fa-solid fa-plus"></i> Dodaj grę</p>
+                        <input name="title" type="text" placeholder="Tytuł gry">
+                        <input name="platform" type="text" placeholder="Platforma">
+                        <input name="premiere" type="text" placeholder="Premiera">
+                        <input name="type" type="text" placeholder="Rodzaj gry">
+                        <textarea name="" id="" cols="30" rows="10" placeholder="Opis gry"></textarea>
+                        <button>Dodaj</button>
+                  </form>
+            </div>
+      </main>
 
 </body>
 
