@@ -14,23 +14,37 @@
 </head>
 
 <body>
-      <div class="nav">
-            <a href="/"><img src="/assets/img/logo.png" alt="GameRate" class="logo"></a>
-            <ul>
-                  <li><a href="/" class="href">Główna</a></li>
-                  <li><a href="/ranking" class="href">Ranking gier</a></li>
-                  <li><a href="/addgame" class="href">Dodaj grę</a></li>
-                  <li><a href="/contact" class="href">Kontakt</a></li>
-                  <li><a href="/login" class="href">Logowanie</a></li>
-            </ul>
-      </div>
+    <div class="nav">
+        <a class="logo" href="/"><img src="/assets/img/logo.png" alt="GameRate" class="logo"></a>
+        <ul>
+            <li><a href="/" class="href">Główna</a></li>
+            <li><a href="/ranking" class="href">Ranking gier</a></li>
+            <li><a href="/addgame" class="href">Dodaj grę</a></li>
+            <li><a href="/contact" class="href">Kontakt</a></li>
+            <?php
+            if(!isset($_SESSION['loggedUser']))
+                echo '<li><a href="/login" class="href">Logowanie</a></li>';
+            else
+                echo '<li><a href="/logout" class="href">Wyloguj się</a></li>';
+            ?>
+        </ul>
+    </div>
       <main class="login">
             <div class="login">
-                  <form class="login-form">
+                  <form class="login-form" action="loginValidate" method="POST">
+                      <div class="message">
+                          <?php
+                          if (isset($messages)){
+                              foreach ($messages as $message) {
+                                  echo $message;
+                              }
+                          }
+                          ?>
+                      </div>
                         <p><i class="fa-solid fa-right-to-bracket"></i> Logowanie</p>
                         <input name="email" type="text" placeholder="Email">
                         <input name="password" type="password" placeholder="Hasło">
-                        <button>Zaloguj</button>
+                        <button type="submit">Zaloguj</button>
                   </form>
             </div>
       </main>

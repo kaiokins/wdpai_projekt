@@ -6,12 +6,18 @@ require_once __DIR__.'/controllers/LoginController.php';
 require_once __DIR__.'/controllers/ContactController.php';
 require_once __DIR__.'/controllers/AddGameController.php';
 require_once __DIR__.'/controllers/RankingController.php';
+require_once __DIR__.'/controllers/SecurityController.php';
 
 class Router {
 
     public static $routes;
 
     public static function get($url, $view)
+    {
+        self::$routes[$url] = $view;
+    }
+
+    public static function post($url, $view)
     {
         self::$routes[$url] = $view;
     }
