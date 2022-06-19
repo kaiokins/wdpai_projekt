@@ -6,12 +6,13 @@
       <main class="contact-wrapper">
             <div class="contact">
                   <div class="contact-form-wrapper">
-                        <form class="contact-form">
+                        <form action="" class="contact-form" method="POST">
                               <p><i class="fa-solid fa-message "></i> Kontakt</p>
-                              <input name="imie" type="text" placeholder="Imię">
-                              <input name="email" type="text" placeholder="Email">
-                              <textarea name="" id="" cols="30" rows="10" placeholder="Wpisz wiadomość..."></textarea>
-                              <button>Wyślij wiadomość</button>
+                              <input id="name" name="name" type="text" placeholder="Imię">
+                              <input id="email" name="email" type="email" placeholder="Email">
+                              <input id="'subject" name="subject" type="text" placeholder="Temat">
+                              <textarea id="message" name="message" id="" cols="30" rows="10" placeholder="Wpisz wiadomość..."></textarea>
+                              <button type="submit" onclick="sendEmail()">Wyślij wiadomość</button>
                         </form>
                   </div>
                   <div class="about">
@@ -37,4 +38,44 @@
       </main>
     <?php
         include 'toInclude/footer.php';
+    ?>
+
+    <?php
+        use PHPMailer\PHPMailer\PHPMailer;
+
+        if(isset($_POST['email']) && isset($_POST['email'])) {
+            $name = $_POST['name'];
+            $mail = $_POST['email'];
+            $subject = $_POST['subject'];
+            $message = $_POST['message'];
+
+            require_once '../../phpmailer/includes/PHPMailer.php';
+            require_once '../../phpmailer/includes/SMTP.php';
+            require_once '../../phpmailer/includes/Exception.php';
+
+            $email = new PHPMailer();
+
+            $email->isSMTP();
+            $email->Host = "smtp.gmail.com";
+            $email->SMTPAuth = true;
+            $email->SMTPSecure = "ssl";
+            $email->Port = 465;
+            $email->Username = "otoautocomp2@gmail.com";
+            $email->Password = "";
+
+            $email->isHTML(true);
+            $email->setFrom($email, $name);
+            $email->addAddress("otoautocomp2@gmail.com");
+            $email->Subject = ("$email ($subject)");
+            $email->Body = $message;
+
+            if ($email->send()) {
+                $status = "Pomyślnie";
+                $response = "Email wysłano";
+            } else {
+                $status = "Niepomyślnie";
+                $response = "Coś poszło nie tak" . $email > ErrorInfo;
+            }
+            exit(json_encode(array("status" => $status, "response" => $response)));
+        }
     ?>

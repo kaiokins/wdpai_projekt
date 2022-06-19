@@ -19,6 +19,7 @@
                         <input name="email" type="text" placeholder="Email">
                         <input name="password" type="password" placeholder="Hasło">
                         <button type="submit">Zaloguj</button>
+                      <p class="register">Nie posiadasz konta? <a href="/register">Zarejestruj się!</a></p>
                   </form>
             </div>
       </main>

@@ -7,6 +7,7 @@ require_once __DIR__.'/controllers/ContactController.php';
 require_once __DIR__.'/controllers/AddGameController.php';
 require_once __DIR__.'/controllers/RankingController.php';
 require_once __DIR__.'/controllers/SecurityController.php';
+require_once __DIR__.'/controllers/RegisterController.php';
 
 class Router {
 
