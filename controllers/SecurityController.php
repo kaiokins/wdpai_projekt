@@ -2,14 +2,21 @@
 
 require_once 'AppController.php';
 require_once __DIR__.'/../models/User.php';
+require_once __DIR__.'/../repository/UserRepository.php';
 
 class SecurityController extends AppController
 {
     public function loginValidate(){
-        $user = new User('kuba@godfryd.com', password_hash('admin', PASSWORD_BCRYPT), 'Jakub', 'Godfryd');
+        $userRepository = new UserRepository();
+
+        if (!$this->isPost()) {
+            return $this->render('login');
+        }
 
         $email = $_POST['email'];
         $password = $_POST['password'];
+
+        $user = $userRepository->getUser($email);
 
         if ($user->getEmail() !== $email){
             return $this->render( 'login', ['messages' => ['Użytkownik z tym e-mailem nie istnieje']]);

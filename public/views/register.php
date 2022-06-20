@@ -6,7 +6,7 @@
 
 <main class="register">
     <div class="register">
-        <form class="register-form" action="loginValidate" method="POST">
+        <form class="register-form" action="register" method="POST">
             <div class="message">
                 <?php
                 if (isset($messages)){
