@@ -11,32 +11,21 @@
                   <p>Platforma <i class="fa-solid fa-sort-down"></i></p>
                   <p>Rodzaj <i class="fa-solid fa-sort-down"></i></p>
             </div>
-
+          <?php foreach ($games as $game): ?>
             <div class="game">
-
                   <div class="game-img">
-                        <img src="/assets/img/gta_v.jpg" alt="">
+                        <img src="public/uploads/<?= $game->getPicture() ?>">
                   </div>
 
                   <div class="game-info">
-                        <h3>Grand Theft Auto V</h3>
-                        <p>Platforma: PC</p>
-                        <p>Data premiery: 14-05-2015</p>
-                        <p>Rodzaj: Gra akcji</p>
+                        <h3><?= $game->getName() ?></h3>
+                        <p>Platforma: <?= $game->getPlatform() ?></p>
+                        <p>Data premiery: <?= $game->getDatepremiere() ?></p>
+                        <p>Rodzaj: <?= $game->getType() ?></p>
                   </div>
 
                   <div class="game-desc">
-                        <p>Bacon ipsum dolor amet brisket andouille rump, bresaola salami leberkas prosciutto short loin
-                              corned beef turducken frankfurter
-                              ball tip chislic. Beef ribs pig cupim, alcatra filet mignon meatloaf spare ribs pork belly
-                              swine cow rump turducken picanha
-                              drumstick. Sirloin tri-tip bresaola rump shoulder tenderloin. Kielbasa filet mignon
-                              sausage corned beef drumstick rump meatloaf
-                              porchetta pork loin. Kielbasa filet mignon sausage corned beef drumstick rump meatloaf
-                              porchetta pork loin. Kielbasa filet mignon
-                              sausage corned beef drumstick rump meatloaf porchetta pork loin.Kielbasa filet mignon
-                              sausage corned beef drumstick rump
-                              meatloaf porchetta pork loin. </p>
+                        <p><?= $game->getDescription() ?></p>
                   </div>
 
                   <div class="game-rate">
@@ -44,6 +33,7 @@
                   </div>
 
             </div>
+          <?php endforeach; ?>
       </div>
 
     <?php

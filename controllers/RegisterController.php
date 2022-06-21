@@ -26,6 +26,7 @@ class RegisterController extends AppController {
         $confirmedPassword = $_POST['confirmPassword'];
         $name = $_POST['name'];
         $surname = $_POST['surname'];
+        $role = 2;
 
         if ($password !== $confirmedPassword) {
             return $this->render('register', ['messages' => ['Hasłą są różne']]);
@@ -35,7 +36,7 @@ class RegisterController extends AppController {
             return $this->render('register', ['messages' => ['Niepoprawny adres email']]);
         }
 
-        $user = new User($email, password_hash($password, PASSWORD_BCRYPT), $name, $surname);
+        $user = new User($email, password_hash($password, PASSWORD_BCRYPT), $role, $name, $surname);
 
         $this->userRepository->addUser($user);
 

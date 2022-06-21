@@ -16,7 +16,7 @@
                           ?>
                       </div>
                         <p><i class="fa-solid fa-right-to-bracket"></i> Logowanie</p>
-                        <input name="email" type="text" placeholder="Email">
+                        <input name="email" type="email" placeholder="Email">
                         <input name="password" type="password" placeholder="Hasło">
                         <button type="submit">Zaloguj</button>
                       <p class="register">Nie posiadasz konta? <a href="/register">Zarejestruj się!</a></p>

@@ -6,7 +6,7 @@
             <li><a href="/addgame" class="href">Dodaj grę</a></li>
             <li><a href="/contact" class="href">Kontakt</a></li>
             <?php
-            if(!isset($_SESSION['loggedUser']))
+            if(!isset($_SESSION['loggedUserMail']))
                 echo '<li><a href="/login" class="href">Logowanie</a></li>';
             else
                 echo '<li><a href="/logout" class="href">Wyloguj się</a></li>';

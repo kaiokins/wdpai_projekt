@@ -18,6 +18,11 @@ img.logo{
     margin-left: 40px;
 }
 
+div.message{
+    text-align: center;
+    color: red;
+}
+
 /* ------------- NAVBAR ------------- */
 
 div.nav{

@@ -18,24 +18,31 @@ class SecurityController extends AppController
 
         $user = $userRepository->getUser($email);
 
-        if ($user->getEmail() !== $email){
+        if(isset($user))
+        {
+//            if ($user->getEmail() !== $email){
+//            }
+            if (!password_verify($password, $user->getPassword())){
+//          echo $user->getPassword();
+                return $this->render( 'login', ['messages' => ['Nieprawidłowe hasło']]);
+//          $user->getPassword() !== $password
+            }
+        }
+        else
+        {
             return $this->render( 'login', ['messages' => ['Użytkownik z tym e-mailem nie istnieje']]);
         }
-        if (!password_verify($password, $user->getPassword())){
-//          echo $user->getPassword();
-            return $this->render( 'login', ['messages' => ['Nieprawidłowe hasło']]);
-//          $user->getPassword() !== $password
-        }
 
-        $_SESSION['loggedUser'] = $email;
+        $_SESSION['loggedUserMail'] = $user->getEmail();
+        $_SESSION['loggedUserRole'] = $user->getRole();
 
         $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/addgame");
+        header("Location: {$url}/");
     }
 
     public function logout() {
-        if(isset($_SESSION['loggedUser']))
-            unset($_SESSION['loggedUser']);
+        if(isset($_SESSION['loggedUserMail']))
+            unset($_SESSION['loggedUserMail']);
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/");
