@@ -18,7 +18,7 @@
                         <p><i class="fa-solid fa-plus"></i> Dodaj grę</p>
                         <input name="title" type="text" placeholder="Tytuł gry">
                         <input name="platform" type="text" placeholder="Platforma">
-                        <input name="datepremiere" type="text" placeholder="Premiera">
+                        <input name="datepremiere" type="text" placeholder="Premiera [Rok-Miesiąc-Dzień]">
                         <input name="type" type="text" placeholder="Rodzaj gry">
                         <textarea name="description" id="" cols="30" rows="10" placeholder="Opis gry"></textarea>
                         <input type="file" name="file">

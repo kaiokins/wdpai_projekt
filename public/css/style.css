@@ -237,7 +237,7 @@ div.about div{
 
 /* ------------- RANKING ------------- */
 
-div.ranking-wrapper{
+.ranking-wrapper{
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -245,18 +245,18 @@ div.ranking-wrapper{
     padding: 0 30px;
 }
 
-div.ranking-wrapper input, div.sort, div.game{
+.ranking-wrapper input, div.sort, div.game{
     margin: 20px 0;
     border-radius: 4px;
 }
 
-div.ranking-wrapper input:first-child{
+.ranking-wrapper input:first-child{
     max-width: 800px;
     width: 100%;
     padding: 10px 10px;
 }
 
-div.ranking-wrapper div.sort{
+.ranking-wrapper div.sort{
     max-width: 800px;
     width: 100%;
     background-color: white;
@@ -270,12 +270,12 @@ div.game-img img{
     max-width: 200px;    
 }
 
-div.ranking-wrapper .sort{
+.ranking-wrapper .sort{
     display: flex;
     padding: 0 30px;
 }
 
-div.ranking-wrapper div.sort p{
+.ranking-wrapper div.sort p{
     padding: 0 30px;
 }
 
@@ -419,4 +419,12 @@ form.register-form button:hover{
 
 form.register-form p > i{
     color: red;
+}
+
+/* INNE */
+
+.no-valid{
+    border: 3px solid red;
+    box-shadow: 0 0 0.2em red;
+    outline: none;
 }

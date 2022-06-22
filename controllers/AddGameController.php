@@ -20,6 +20,8 @@ class AddGameController extends AppController {
 
     public function addgame()
     {
+        if(!isset($_SESSION['loggedUserRole']))
+            header('Location: /');
 
         if(isset($_SESSION['loggedUserRole']) && $_SESSION['loggedUserRole']!=1)
             return $this->render("permission");

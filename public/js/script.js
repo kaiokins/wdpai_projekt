@@ -1,35 +1,52 @@
+const form = document.querySelector("form");
+const emailInput = form.querySelector('input[name="email"]');
+const confirmedPasswordInput = form.querySelector('input[name="confirmPassword"]');
+const dateInput = form.querySelector('input[name="datepremiere"]');
 
-    function sendEmail(){
-    var name = $("#name");
-    var email = $("#email");
-    var subject = $("#subject");
-    var message = $("#message");
+function isEmail(email) {
+    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+}
 
-    if(isNotEmpty(name) && isNotEmpty(email) && isNotEmpty(subject) && isNotEmpty(message)){
-    $.ajax({
-    url: 'contact.php',
-    method: 'POST',
-    dataType: 'json',
-    data:{
-    name: name.val(),
-    email: email.val(),
-    subject: subject.val(),
-    message: message.val(),
+function arePasswordsSame(password, confirmedPassword) {
+    return password === confirmedPassword;
+}
 
-}, success: function (response){
-    $('#myForm')[0].reset();
-    $('.sent-notification').text("Wiadomość została wysłana");
+function correctDate(date) {
+    return /^\d{4}-\d{2}-\d{2}$/.test(date);
 }
-})
+
+function markValidation(element, condition) {
+    !condition ? element.classList.add('no-valid') : element.classList.remove('no-valid');
 }
+
+function validateEmail() {
+    setTimeout(function () {
+            markValidation(emailInput, isEmail(emailInput.value));
+        },
+        1000
+    );
 }
-    function isNotEmpty(caller){
-    if(caller.val() == ""){
-    caller.css('border', '1px solid red');
-    return false;
+
+function validatePassword() {
+    setTimeout(function () {
+            const condition = arePasswordsSame(
+                confirmedPasswordInput.previousElementSibling.value,
+                confirmedPasswordInput.value
+            );
+            markValidation(confirmedPasswordInput, condition);
+        },
+        1000
+    );
 }
-    else{
-    caller.css('border', '')
-    return true;
+
+function validateDate() {
+    setTimeout(function () {
+            markValidation(dateInput, correctDate(dateInput.value));
+        },
+        1000
+    );
 }
-}
+
+emailInput.addEventListener('keyup', validateEmail);
+confirmedPasswordInput.addEventListener('keyup', validatePassword);
+dateInput.addEventListener('keyup', validateDate); //Tutaj trzeba będzie naprawić

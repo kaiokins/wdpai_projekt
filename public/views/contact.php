@@ -40,42 +40,42 @@
         include 'toInclude/footer.php';
     ?>
 
-    <?php
-        use PHPMailer\PHPMailer\PHPMailer;
-
-        if(isset($_POST['email']) && isset($_POST['email'])) {
-            $name = $_POST['name'];
-            $mail = $_POST['email'];
-            $subject = $_POST['subject'];
-            $message = $_POST['message'];
-
-            require_once '../../phpmailer/includes/PHPMailer.php';
-            require_once '../../phpmailer/includes/SMTP.php';
-            require_once '../../phpmailer/includes/Exception.php';
-
-            $email = new PHPMailer();
-
-            $email->isSMTP();
-            $email->Host = "smtp.gmail.com";
-            $email->SMTPAuth = true;
-            $email->SMTPSecure = "ssl";
-            $email->Port = 465;
-            $email->Username = "otoautocomp2@gmail.com";
-            $email->Password = "";
-
-            $email->isHTML(true);
-            $email->setFrom($email, $name);
-            $email->addAddress("otoautocomp2@gmail.com");
-            $email->Subject = ("$email ($subject)");
-            $email->Body = $message;
-
-            if ($email->send()) {
-                $status = "Pomyślnie";
-                $response = "Email wysłano";
-            } else {
-                $status = "Niepomyślnie";
-                $response = "Coś poszło nie tak" . $email > ErrorInfo;
-            }
-            exit(json_encode(array("status" => $status, "response" => $response)));
-        }
-    ?>
+<!--    --><?php
+//        use PHPMailer\PHPMailer\PHPMailer;
+//
+//        if(isset($_POST['email']) && isset($_POST['email'])) {
+//            $name = $_POST['name'];
+//            $mail = $_POST['email'];
+//            $subject = $_POST['subject'];
+//            $message = $_POST['message'];
+//
+//            require_once '../../phpmailer/includes/PHPMailer.php';
+//            require_once '../../phpmailer/includes/SMTP.php';
+//            require_once '../../phpmailer/includes/Exception.php';
+//
+//            $email = new PHPMailer();
+//
+//            $email->isSMTP();
+//            $email->Host = "smtp.gmail.com";
+//            $email->SMTPAuth = true;
+//            $email->SMTPSecure = "ssl";
+//            $email->Port = 465;
+//            $email->Username = "otoautocomp2@gmail.com";
+//            $email->Password = "";
+//
+//            $email->isHTML(true);
+//            $email->setFrom($email, $name);
+//            $email->addAddress("otoautocomp2@gmail.com");
+//            $email->Subject = ("$email ($subject)");
+//            $email->Body = $message;
+//
+//            if ($email->send()) {
+//                $status = "Pomyślnie";
+//                $response = "Email wysłano";
+//            } else {
+//                $status = "Niepomyślnie";
+//                $response = "Coś poszło nie tak" . $email > ErrorInfo;
+//            }
+//            exit(json_encode(array("status" => $status, "response" => $response)));
+//        }
+//    ?>
