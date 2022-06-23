@@ -15,5 +15,6 @@ Router::post('loginValidate', 'SecurityController');
 Router::get('logout', 'SecurityController');
 Router::get('register', 'RegisterController');
 Router::post('search', 'RankingController');
+Router::post('addRate', 'RankingController');
 
 Router::run($path);

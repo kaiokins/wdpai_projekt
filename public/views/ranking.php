@@ -11,9 +11,18 @@
                   <p>Platforma <i class="fa-solid fa-sort-down"></i></p>
                   <p>Rodzaj <i class="fa-solid fa-sort-down"></i></p>
             </div>
+          <div class="message">
+              <?php
+              if (isset($messages)){
+                  foreach ($messages as $message) {
+                      echo $message;
+                  }
+              }
+              ?>
+          </div>
           <section class="all-games">
               <?php foreach ($games as $game): ?>
-                <div class="game">
+                <div class="game" id="<?= $game->getId() ?>">
                       <div class="game-img">
                             <img src="public/uploads/<?= $game->getPicture() ?>">
                       </div>
@@ -30,9 +39,21 @@
                       </div>
 
                       <div class="game-rate">
-                            <div class="rate">86</div>
+                            <div class="rate"><?= $game->getAvgRates() ?></div>
                       </div>
 
+                        <?php
+                        if(isset($_SESSION['loggedUserId']))
+                            echo '
+                                  <div class="game-rate">
+                                      <form action="addRate" method="POST">
+                                          <input placeholder="(0-100)" min="0" max="100" type="number" name="user-rate">
+                                          <input type="hidden" name="game_id" value="'.$game->getId().'">
+                                          <button type="submit">Oceń</button>
+                                      </form>
+                                  </div>
+                                ';
+                        ?>
                 </div>
               <?php endforeach; ?>
           </section>
@@ -57,9 +78,21 @@
             </div>
 
             <div class="game-rate">
-                <div class="rate">86</div>
+                <div class="rate"></div>
             </div>
 
+            <?php
+            if(isset($_SESSION['loggedUserId']))
+                echo '
+                                  <div class="game-rate">
+                                      <form action="addRate" method="POST">
+                                          <input placeholder="(0-100)" min="0" max="100" type="number" name="user-rate">
+                                          <input type="hidden" name="game_id" value="'.$game->getId().'">
+                                          <button type="submit">Oceń</button>
+                                      </form>
+                                  </div>
+                                ';
+            ?>
         </div>
     </template>
 

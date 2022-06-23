@@ -51,5 +51,8 @@ function createGame(game) {
     const description = clone.querySelector(".description");
     description.innerHTML = game.description;
 
+    const rate = clone.querySelector(".rate");
+    rate.innerHTML = game.rate;
+
     gameContainer.appendChild(clone);
 }

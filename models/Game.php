@@ -8,8 +8,11 @@ class Game
     private $datepremiere;
     private $type;
     private $description;
+    private $id_game;
+    private $user_id;
+    private $ratesArray;
 
-    public function __construct($picture, $name, $platform, $datepremiere, $type, $description)
+    public function __construct($picture, $name, $platform, $datepremiere, $type, $description, $id_game = null,$ratesArray=array())
     {
         $this->picture=$picture;
         $this->name=$name;
@@ -17,6 +20,8 @@ class Game
         $this->datepremiere=$datepremiere;
         $this->type=$type;
         $this->description=$description;
+        $this->id_game=$id_game;
+        $this->ratesArray=$ratesArray;
     }
 
     public function getPicture()
@@ -77,5 +82,36 @@ class Game
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    public function getId()
+    {
+        return $this->id_game;
+    }
+
+    public function setId($id_game)
+    {
+        $this->id_game = $id_game;
+    }
+
+    public function getRates()
+    {
+        return $this->ratesArray;
+    }
+
+    public function getAvgRates()
+    {
+        $rates = $this->getRates();
+        if(!isset($rates))
+            return 0;
+        $sum = 0;
+        $counter = 0;
+        foreach ($rates as $rate)
+        {
+            $sum+=$rate->getRate();
+            $counter++;
+        }
+
+        return round($sum/$counter);
     }
 }

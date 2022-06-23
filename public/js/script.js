@@ -48,5 +48,5 @@ function validateDate() {
 }
 
 emailInput.addEventListener('keyup', validateEmail);
-confirmedPasswordInput.addEventListener('keyup', validatePassword);
 dateInput.addEventListener('keyup', validateDate); //Tutaj trzeba będzie naprawić
+confirmedPasswordInput.addEventListener('keyup', validatePassword);

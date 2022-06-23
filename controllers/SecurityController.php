@@ -35,6 +35,7 @@ class SecurityController extends AppController
 
         $_SESSION['loggedUserMail'] = $user->getEmail();
         $_SESSION['loggedUserRole'] = $user->getRole();
+        $_SESSION['loggedUserId'] = $user->getRole();
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/");
@@ -46,6 +47,9 @@ class SecurityController extends AppController
 
         if(isset($_SESSION['loggedUserRole']))
             unset($_SESSION['loggedUserRole']);
+
+        if(isset($_SESSION['loggedUserId']))
+            unset($_SESSION['loggedUserId']);
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/");

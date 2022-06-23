@@ -36,7 +36,7 @@ class RegisterController extends AppController {
             return $this->render('register', ['messages' => ['Niepoprawny adres email']]);
         }
 
-        $user = new User($email, password_hash($password, PASSWORD_BCRYPT), $role, $name, $surname);
+        $user = new User($email, password_hash($password, PASSWORD_BCRYPT), $role, null, $name, $surname);
 
         $this->userRepository->addUser($user);
 

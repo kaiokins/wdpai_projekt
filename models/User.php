@@ -7,14 +7,16 @@ class User
     private $name;
     private $surname;
     private $role;
+    private $id;
 
-    public function __construct(string $email, string $password, int $role ,string $name="", string $surname="")
+    public function __construct(string $email, string $password, int $role, int $id, string $name="", string $surname="")
     {
         $this->email = $email;
         $this->password = $password;
         $this->name = $name;
         $this->surname = $surname;
         $this->role = $role;
+        $this->id = $id;
     }
 
     public function getEmail(): string
@@ -60,5 +62,9 @@ class User
     public function getRole(): string
     {
         return $this->role;
+    }
+    public function getId(): string
+    {
+        return $this->id;
     }
 }

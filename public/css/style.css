@@ -8,6 +8,7 @@
 body{
     background-image: url("/assets/img/background.jpg");
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
     background-position: center center;
     color: white;
@@ -307,6 +308,12 @@ div.game .game-desc{
     border-left: 1px solid black;
     border-right: 1px solid black;
     padding: 0 30px;
+}
+
+div.game-rate input {
+    color: red;
+    margin: 30px;
+    width: 100%;
 }
 
 /* ----------------- ADD GAME ------------- */
