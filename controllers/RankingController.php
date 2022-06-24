@@ -44,7 +44,7 @@ class RankingController extends AppController {
         $gameId = $_POST['game_id'];
         $userId = $_SESSION['loggedUserId'];
 
-        if ($rate < 0 || $rate > 100) {
+        if ($rate <= 0 || $rate > 100) {
             return $this->render('ranking', ['messages' => ['Zakres oceny to 0-100'],'games' => $games]);
         }
 

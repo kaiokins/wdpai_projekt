@@ -297,6 +297,10 @@ div.game .game-info{
     width: 60%;
 }
 
+p.bold-text{
+    font-weight: bold;
+}
+
 div.game .game-rate{
     padding: 15px;
     background-color: #03dc15e9;

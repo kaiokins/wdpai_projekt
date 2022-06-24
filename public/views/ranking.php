@@ -29,9 +29,12 @@
 
                       <div class="game-info">
                             <h3><?= $game->getName() ?></h3>
-                            <p>Platforma: <?= $game->getPlatform() ?></p>
-                            <p>Data premiery: <?= $game->getDatepremiere() ?></p>
-                            <p>Rodzaj: <?= $game->getType() ?></p>
+                            <p class="bold-text">Platforma:</p>
+                            <p><?= $game->getPlatform() ?></p>
+                            <p class="bold-text">Data premiery:</p>
+                            <p><?= $game->getDatepremiere() ?></p>
+                            <p class="bold-text">Rodzaj:</p>
+                            <p><?= $game->getType() ?></p>
                       </div>
 
                       <div class="game-desc">
@@ -67,10 +70,12 @@
 
             <div class="game-info">
                 <h3></h3>
-                <span>Platforma: </span>
-                <p class="platform">Platforma: </p>
-                <p class="datepremiere">Data premiery: </p>
-                <p class="type">Rodzaj: </p>
+                <p class="bold-text">Platforma:</p>
+                <p class="platform"></p>
+                <p class="bold-text">Data premiery:</p>
+                <p class="datepremiere"></p>
+                <p class="bold-text">Rodzaj:</p>
+                <p class="type"></p>
             </div>
 
             <div class="game-desc">

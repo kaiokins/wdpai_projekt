@@ -91,7 +91,7 @@ class GameRepository extends Repository
         $dbh = $this->database->connect();
 //        $userDetailId = $dbh->lastInsertId();
         $stmt = $dbh->prepare('
-            INSERT INTO rates (fk_game, fk_user, rate) VALUES (?, ?, ?)
+            SELECT function_addrate(?, ?, ?)
         ');
 
         $stmt->execute([
@@ -101,12 +101,11 @@ class GameRepository extends Repository
         ]);
     }
 
-
     public function getRates(string $id_game)
     {
         $result = array();
         $stmt = $this->database->connect()->prepare('
-        SELECT * FROM rates WHERE fk_game = :id_game 
+        select id_rate, fk_game, fk_user, rate from rates left join games on rates.fk_game = games.id_game where fk_game = :id_game
         ');
         $stmt->bindParam(':id_game', $id_game, PDO::PARAM_INT);
         $stmt->execute();
@@ -129,7 +128,7 @@ class GameRepository extends Repository
     public function getRateUser(string $id_game, string $user_id)
     {
         $stmt = $this->database->connect()->prepare('
-        SELECT * FROM rates WHERE fk_game = :id_game AND fk_user = :user_id
+        select id_rate, fk_game, fk_user, rate from rates left join games on rates.fk_game = games.id_game where fk_game = :id_game AND fk_user = :user_id
         ');
         $stmt->bindParam(':id_game', $id_game, PDO::PARAM_INT);
         $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
