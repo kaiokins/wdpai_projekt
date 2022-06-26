@@ -102,8 +102,10 @@ class Game
     public function getAvgRates()
     {
         $rates = $this->getRates();
+
         if(!isset($rates))
             return 0;
+
         $sum = 0;
         $counter = 0;
         foreach ($rates as $rate)

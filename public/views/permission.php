@@ -1,13 +1,15 @@
 <?php
-$title = "GameRate | Dodaj grę";
-include 'toInclude/header.php';
-include 'toInclude/nav.php';
+    $title = "GameRate | Dodaj grę";
+    include 'toInclude/header.php';
+    include 'toInclude/nav.php';
 ?>
-<main class="addgame-wrapper">
-    <div class="addgame">
-            <p><i class="fa-solid fa-plus"></i> Brak uprawnień</p>
+
+ <main class="wrapper">
+    <div class="message">
+        <p><i class="fa-solid fa-lock"></i> Brak uprawnień do tej części aplikacji</p>
     </div>
-</main>
+ </main>
+
 <?php
-include 'toInclude/footer.php';
+    include 'toInclude/footer.php';
 ?>

@@ -1,17 +1,19 @@
 <?php
 
 require_once 'AppController.php';
+
 require_once __DIR__.'/../models/User.php';
 require_once __DIR__.'/../repository/UserRepository.php';
 
 class SecurityController extends AppController
 {
-    public function loginValidate(){
+    public function loginValidate()
+    {
         $userRepository = new UserRepository();
 
-        if (!$this->isPost()) {
+        if (!$this->isPost())
             return $this->render('login');
-        }
+
 
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -20,13 +22,8 @@ class SecurityController extends AppController
 
         if(isset($user))
         {
-//            if ($user->getEmail() !== $email){
-//            }
-            if (!password_verify($password, $user->getPassword())){
-//          echo $user->getPassword();
+            if (!password_verify($password, $user->getPassword()))
                 return $this->render( 'login', ['messages' => ['Nieprawidłowe hasło']]);
-//          $user->getPassword() !== $password
-            }
         }
         else
         {
@@ -41,7 +38,8 @@ class SecurityController extends AppController
         header("Location: {$url}/");
     }
 
-    public function logout() {
+    public function logout()
+    {
         if(isset($_SESSION['loggedUserMail']))
             unset($_SESSION['loggedUserMail']);
 

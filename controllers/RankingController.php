@@ -1,14 +1,16 @@
 <?php
-require_once 'AppController.php';
 
+require_once 'AppController.php';
 require_once 'RankingController.php';
+
 require_once __DIR__.'/../models/Game.php';
 require_once __DIR__.'/../models/Rate.php';
 require_once __DIR__.'/../repository/GameRepository.php';
 
-class RankingController extends AppController {
-
-    public function __construct(){
+class RankingController extends AppController
+{
+    public function __construct()
+    {
         parent::__construct();
         $this->GameRepository = new GameRepository();
     }
@@ -23,7 +25,8 @@ class RankingController extends AppController {
     {
         $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 
-        if ($contentType === "application/json") {
+        if ($contentType === "application/json")
+        {
             $content = trim(file_get_contents("php://input"));
             $decoded = json_decode($content, true);
 
@@ -34,9 +37,11 @@ class RankingController extends AppController {
         }
     }
 
-    public function addRate() {
+    public function addRate()
+    {
         $games = $this->GameRepository->getGames();
-        if (!$this->isPost() || !isset($_SESSION['loggedUserId'])) {
+        if (!$this->isPost() || !isset($_SESSION['loggedUserId']))
+        {
             return  $this->render('ranking', ['games' => $games]);
         }
 
@@ -44,7 +49,8 @@ class RankingController extends AppController {
         $gameId = $_POST['game_id'];
         $userId = $_SESSION['loggedUserId'];
 
-        if ($rate <= 0 || $rate > 100) {
+        if ($rate <= 0 || $rate > 100)
+        {
             return $this->render('ranking', ['messages' => ['Zakres oceny to 0-100'],'games' => $games]);
         }
 
@@ -53,7 +59,6 @@ class RankingController extends AppController {
             return $this->render('ranking', ['messages' => ['Już oceniłeś tą gre'],'games' => $games]);
 
         $rated = new Rate($gameId, $userId, $rate);
-
         $this->GameRepository->addRate($rated);
 
         return $this->render('ranking', ['games' => $games]);

@@ -1,106 +1,112 @@
-    <?php
-        $title = "GameRate | Ranking";
-        include 'toInclude/header.php';
-        include 'toInclude/nav.php';
-    ?>
-      <div class="ranking-wrapper">
-            <input placeholder="Wyszukaj gry">
-            <div class="sort">
-                  <p>Ocena <i class="fa-solid fa-sort-down"></i></p>
-                  <p>Data premiery <i class="fa-solid fa-sort-down"></i></p>
-                  <p>Platforma <i class="fa-solid fa-sort-down"></i></p>
-                  <p>Rodzaj <i class="fa-solid fa-sort-down"></i></p>
-            </div>
-          <div class="message">
-              <?php
-              if (isset($messages)){
-                  foreach ($messages as $message) {
-                      echo $message;
-                  }
-              }
-              ?>
-          </div>
-          <section class="all-games">
-              <?php foreach ($games as $game): ?>
-                <div class="game" id="<?= $game->getId() ?>">
-                      <div class="game-img">
-                            <img src="public/uploads/<?= $game->getPicture() ?>">
-                      </div>
+<?php
+    $title = "GameRate | Ranking";
+    include 'toInclude/header.php';
+    include 'toInclude/nav.php';
+?>
 
-                      <div class="game-info">
-                            <h3><?= $game->getName() ?></h3>
-                            <p class="bold-text">Platforma:</p>
-                            <p><?= $game->getPlatform() ?></p>
-                            <p class="bold-text">Data premiery:</p>
-                            <p><?= $game->getDatepremiere() ?></p>
-                            <p class="bold-text">Rodzaj:</p>
-                            <p><?= $game->getType() ?></p>
-                      </div>
+  <main class="ranking-wrapper">
+        <input placeholder="Wyszukaj gry">
 
-                      <div class="game-desc">
-                            <p><?= $game->getDescription() ?></p>
-                      </div>
+        <div class="sort">
+              <p>Ocena <i class="fa-solid fa-sort-down"></i></p>
+              <p>Data premiery <i class="fa-solid fa-sort-down"></i></p>
+              <p>Platforma <i class="fa-solid fa-sort-down"></i></p>
+              <p>Rodzaj <i class="fa-solid fa-sort-down"></i></p>
+        </div>
 
-                      <div class="game-rate">
-                            <div class="rate"><?= $game->getAvgRates() ?></div>
-                      </div>
-
-                        <?php
-                        if(isset($_SESSION['loggedUserId']))
-                            echo '
-                                  <div class="game-rate">
-                                      <form action="addRate" method="POST">
-                                          <input placeholder="(0-100)" min="0" max="100" type="number" name="user-rate">
-                                          <input type="hidden" name="game_id" value="'.$game->getId().'">
-                                          <button type="submit">Oceń</button>
-                                      </form>
-                                  </div>
-                                ';
-                        ?>
-                </div>
-              <?php endforeach; ?>
-          </section>
+      <div class="message">
+          <?php
+          if (isset($messages))
+          {
+              foreach ($messages as $message)
+                  echo $message;
+          }
+          ?>
       </div>
 
-    <template class="ranking-wrapper" id="game-template">
-        <div class="game">
-            <div class="game-img">
-                <img src="">
-            </div>
+      <section class="all-games">
+          <?php foreach ($games as $game): ?>
+              <div class="game" id="<?= $game->getId() ?>">
 
-            <div class="game-info">
-                <h3></h3>
-                <p class="bold-text">Platforma:</p>
-                <p class="platform"></p>
-                <p class="bold-text">Data premiery:</p>
-                <p class="datepremiere"></p>
-                <p class="bold-text">Rodzaj:</p>
-                <p class="type"></p>
-            </div>
+                  <div class="game-img">
+                        <img src="public/uploads/<?= $game->getPicture() ?>">
+                  </div>
 
-            <div class="game-desc">
-                <p class="description"></p>
-            </div>
+                  <div class="game-info">
+                        <h3><?= $game->getName() ?></h3>
+                        <p>Platforma:</p>
+                        <p><?= $game->getPlatform() ?></p>
+                        <p>Data premiery:</p>
+                        <p><?= $game->getDatepremiere() ?></p>
+                        <p>Rodzaj:</p>
+                        <p><?= $game->getType() ?></p>
+                  </div>
 
-            <div class="game-rate">
-                <div class="rate"></div>
-            </div>
+                  <div class="game-desc">
+                        <p><?= $game->getDescription() ?></p>
+                  </div>
 
-            <?php
-            if(isset($_SESSION['loggedUserId']))
-                echo '
-                                  <div class="game-rate">
-                                      <form action="addRate" method="POST">
-                                          <input placeholder="(0-100)" min="0" max="100" type="number" name="user-rate">
-                                          <input type="hidden" name="game_id" value="'.$game->getId().'">
-                                          <button type="submit">Oceń</button>
-                                      </form>
-                                  </div>
-                                ';
-            ?>
+                  <div class="game-rate">
+                        <div class="rate"><?= $game->getAvgRates() ?></div>
+                  </div>
+
+                  <?php
+                  if(isset($_SESSION['loggedUserId']))
+                      echo '
+                          <div class="game-rate-user">
+                              <form action="addRate" method="POST">
+                                  <input placeholder="(0-100)" min="0" max="100" type="number" name="user-rate">
+                                  <input type="hidden" name="game_id" value="'.$game->getId().'">
+                                  <button type="submit">Oceń</button>
+                              </form>
+                          </div>
+                           ';
+                  ?>
+            </div>
+          <?php endforeach; ?>
+      </section>
+  </main>
+
+ <template class="ranking-wrapper" id="game-template">
+    <div class="game">
+
+        <div class="game-img">
+            <img src="">
         </div>
-    </template>
 
-    <?php
-        include 'toInclude/footer.php';
-    ?>
+        <div class="game-info">
+            <h3></h3>
+            <p class="bold-text">Platforma:</p>
+            <p class="platform"></p>
+            <p class="bold-text">Data premiery:</p>
+            <p class="datepremiere"></p>
+            <p class="bold-text">Rodzaj:</p>
+            <p class="type"></p>
+        </div>
+
+        <div class="game-desc">
+            <p class="description"></p>
+        </div>
+
+        <div class="game-rate">
+            <div class="rate"></div>
+        </div>
+
+        <?php
+        if(isset($_SESSION['loggedUserId']))
+            echo '
+                  <div class="game-rate-user">
+                      <form action="addRate" method="POST">
+                          <input placeholder="(0-100)" min="0" max="100" type="number" name="user-rate">
+                          <input type="hidden" name="game_id" value="'.$game->getId().'">
+                          <button type="submit">Oceń</button>
+                      </form>
+                  </div>
+                  ';
+        ?>
+    </div>
+ </template>
+    <script type="text/javascript" src="/public/js/rate-validation.js"></script>
+<?php
+    include 'toInclude/footer.php';
+?>

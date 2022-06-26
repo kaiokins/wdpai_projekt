@@ -1,11 +1,13 @@
-* {
+*
+{
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
 }
 
-body{
+body
+{
     background-image: url("/assets/img/background.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -15,18 +17,38 @@ body{
     height: 100vh
 }
 
-img.logo{
+img.logo
+{
     margin-left: 40px;
 }
 
-div.message{
+div.message
+{
     text-align: center;
     color: red;
 }
 
+main.wrapper
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 126px);
+    color: black;
+    padding: 20px ;
+}
+
+.no-valid
+{
+    border: 3px solid red;
+    box-shadow: 0 0 0.2em red;
+    outline: none;
+}
+
 /* ------------- NAVBAR ------------- */
 
-div.nav{
+div.nav
+{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,26 +56,29 @@ div.nav{
     padding: 10px 0;
 }
 
-div.nav ul{
+div.nav ul
+{
     display: flex;
     list-style-type: none;
     margin-right: 40px;
 }
 
-
-div.nav ul li a{
+div.nav ul li a
+{
     color: white;
     padding: 45px;
     text-decoration: none;
 }
 
-div.nav ul li a:hover{
+div.nav ul li a:hover
+{
     color: gray;
 }
 
 /* ------------- INDEX ------------- */
 
-div.wrapper{
+div.index-wrapper
+{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -64,118 +89,64 @@ div.wrapper{
     padding: 0 40px;
 }
 
-div.main{
+div.index
+{
     padding-bottom: 50px;
 }
 
-div.text{
+div.text
+{
     border-bottom: 1px solid white;
     width: 500px;
     margin-bottom: 25px;
     padding-bottom: 25px;
 }
 
-div.text h2{
+div.text h2
+{
     font-size: 70px;
     text-transform: uppercase;
 }
 
-p.text{
+p.text
+{
     font-size: 25px;
     margin-bottom: 30px;
 }
 
-a.button{
+a.button
+{
     color: white;
     border: 1px solid red;
     text-decoration: none;
     padding: 10px 35px;
 }
 
-a.button:hover{
+a.button:hover
+{
     color: white;
     background-color: red;
 }
 
 /* ------------- LOGIN ------------- */
 
-div.login{
-    background-color: white;
-    max-width: 600px;
-    padding: 40px 10px;
-    width: 100%;
-    border-radius: 4px;
-}
-
-main.login{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 126px);
-    color: black;
-    padding: 20px ;
-}
-
-form.login-form > * {
-    display: block;
-    width: 50%;
-    margin: 20px auto;
-    padding: 10px;
-}
-
-form.login-form > input {
-    border: 1px solid #d1d1d1;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-form.login-form p{
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 1.6rem;
-    font-weight: 700;
-}
-
-form.login-form button{
-    background-color: transparent;
-    border: 1px solid red;
-    cursor: pointer;
-
-}
-
-form.login-form button:hover{
-    background-color: red;
-    color: white;
-    
-}
-
-form.login-form p > i{
-    color: red;
-}
-
-form.login-form p.register{
+form.style-to-form p.register
+{
     font-size: 0.8rem;
 }
 
-p.register a{
+form.style-to-form p.register a
+{
     text-decoration: none;
     color: red;
 }
 
 /* ------------- CONTACT ------------- */
 
-main.contact-wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 126px);
-    color: black;
-    padding: 20px ;
-}
-
-div.contact{
+div.contact
+{
     background-color: white;
-    max-width: 900px;
+    max-width: 600px;
     padding: 40px 10px;
     width: 100%;
     display: flex;
@@ -183,62 +154,32 @@ div.contact{
     border-radius: 4px;
 }
 
-div.contact-form-wrapper{
-    flex-basis: 70%;
-}
-
-form.contact-form > * {
-    display: block;
-    width: 80%;
-    margin: 20px auto;
-    padding: 10px;
-}
-
-form.contact-form > input, textarea {
-    border: 1px solid #d1d1d1;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-form.contact-form p > i{
+div.about p:first-child i
+{
     color: red;
 }
 
-form.contact-form p{
+div.about p.title
+{
     text-transform: uppercase;
     text-align: center;
-    font-size: 1.6rem;
-    font-weight: 400;
-    font-weight: bold;
 }
 
-form.contact-form button{
-    background-color: transparent;
-    border: 1px solid red;
-    cursor: pointer;
-}
-
-form.contact-form button:hover{
-    background-color: red;
-    color: white;
-}
-
-div.about p:first-child i{
-    color: red;
-}
-
-div.about p:first-child{
+div.about p:first-child
+{
     font-weight: 700;
     font-size: 1.6rem;
 }
 
-div.about div{
-    padding: 15px;
+div.about div
+{
+    padding: 20px;
 }
 
 /* ------------- RANKING ------------- */
 
-.ranking-wrapper{
+main.ranking-wrapper
+{
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -246,41 +187,44 @@ div.about div{
     padding: 0 30px;
 }
 
-.ranking-wrapper input, div.sort, div.game{
+main.ranking-wrapper input, div.sort, div.game
+{
     margin: 20px 0;
     border-radius: 4px;
 }
 
-.ranking-wrapper input:first-child{
+main.ranking-wrapper input:first-child
+{
     max-width: 800px;
     width: 100%;
     padding: 10px 10px;
 }
 
-.ranking-wrapper div.sort{
+div.sort
+{
     max-width: 800px;
     width: 100%;
     background-color: white;
     color: black;
     justify-content: space-between;
-    padding: 10px 0;
-}
-
-div.game-img img{
-    min-width: 200px;
-    max-width: 200px;    
-}
-
-.ranking-wrapper .sort{
+    padding: 10px 30px;
     display: flex;
+}
+
+div.sort p
+{
     padding: 0 30px;
 }
 
-.ranking-wrapper div.sort p{
-    padding: 0 30px;
+section.all-games
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
-div.game{
+div.game
+{
     display: flex;
     max-width: 90%;
     justify-content: space-between;
@@ -289,49 +233,74 @@ div.game{
     color: black;
 }
 
-div.game .game-img, .game-info, .game-desc, .game-rate{
+div.game div.game-img img
+{
+    min-width: 200px;
+    max-width: 200px;
+}
+
+div.game div.game-img, div.game-info, div.game-desc, div.game-rate
+{
     margin: 15px;
 }
 
-div.game .game-info{
+div.game div.game-info
+{
     width: 60%;
 }
 
-p.bold-text{
+div.game div.game-info p:nth-child(2n)
+{
     font-weight: bold;
 }
 
-div.game .game-rate{
+div.game div.game-rate
+{
     padding: 15px;
     background-color: #03dc15e9;
     text-align: center;
     font-size: 3rem;
 }
 
-div.game .game-desc{
+div.game div.game-desc
+{
     border-left: 1px solid black;
     border-right: 1px solid black;
     padding: 0 30px;
 }
 
-div.game-rate input {
-    color: red;
-    margin: 30px;
-    width: 100%;
+div.game div.game-rate-user
+{
+    margin-right: 20px;
 }
 
-/* ----------------- ADD GAME ------------- */
-
-main.addgame-wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 126px);
+div.game div.game-rate-user button
+{
+    background-color: transparent;
     color: black;
-    padding: 20px ;
+    border: 2px solid green;
+    text-decoration: none;
+    padding: 10px 35px;
+    width: 100px;
 }
 
-div.addgame{
+div.game div.game-rate-user button:hover
+{
+    color: white;
+    background-color: green;
+    cursor: pointer;
+}
+
+div.game div.game-rate-user input, button
+{
+    width: 100px;
+    border-radius: 0;
+}
+
+/* ------------- FORM STYLE ------------- */
+
+div.form-style
+{
     background-color: white;
     max-width: 600px;
     padding: 40px 10px;
@@ -339,103 +308,42 @@ div.addgame{
     border-radius: 4px;
 }
 
-form.addgame-form > * {
+form.style-to-form > *
+{
     display: block;
     width: 50%;
     margin: 20px auto;
     padding: 10px;
 }
 
-form.addgame-form > input, textarea {
+form.style-to-form p > i{
+    color: red;
+}
+
+form.style-to-form > input, textarea
+{
     border: 1px solid #d1d1d1;
     padding-left: 20px;
     padding-right: 20px;
 }
 
-form.addgame-form p{
+form.style-to-form p
+{
     text-transform: uppercase;
     text-align: center;
     font-size: 1.6rem;
     font-weight: 700;
 }
 
-form.addgame-form button{
+form.style-to-form button
+{
     background-color: transparent;
     border: 1px solid red;
     cursor: pointer;
-
 }
 
-form.addgame-form button:hover{
+form.style-to-form button:hover
+{
     background-color: red;
     color: white;
-    
-}
-
-form.addgame-form p > i{
-    color: red;
-}
-
-/* ------------- REGISTER ------------- */
-
-div.register{
-    background-color: white;
-    max-width: 600px;
-    padding: 40px 10px;
-    width: 100%;
-    border-radius: 4px;
-}
-
-main.register{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 126px);
-    color: black;
-    padding: 20px ;
-}
-
-form.register-form > * {
-    display: block;
-    width: 50%;
-    margin: 20px auto;
-    padding: 10px;
-}
-
-form.register-form > input {
-    border: 1px solid #d1d1d1;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-form.register-form p{
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 1.6rem;
-    font-weight: 700;
-}
-
-form.register-form button{
-    background-color: transparent;
-    border: 1px solid red;
-    cursor: pointer;
-
-}
-
-form.register-form button:hover{
-    background-color: red;
-    color: white;
-
-}
-
-form.register-form p > i{
-    color: red;
-}
-
-/* INNE */
-
-.no-valid{
-    border: 3px solid red;
-    box-shadow: 0 0 0.2em red;
-    outline: none;
 }

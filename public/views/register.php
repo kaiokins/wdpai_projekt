@@ -4,18 +4,20 @@
     include 'toInclude/nav.php';
 ?>
 
-<main class="register">
-    <div class="register">
-        <form class="register-form" action="register" method="POST">
+ <main class="wrapper">
+    <div class="form-style">
+        <form class="style-to-form" action="register" method="POST" name="register">
+
             <div class="message">
                 <?php
-                if (isset($messages)){
-                    foreach ($messages as $message) {
+                if (isset($messages))
+                {
+                    foreach ($messages as $message)
                         echo $message;
-                    }
                 }
                 ?>
             </div>
+
             <p><i class="fa-solid fa-user-plus"></i> Rejestracja</p>
             <input name="email" type="email" placeholder="Email">
             <input name="name" type="text" placeholder="Imię">
@@ -25,8 +27,8 @@
             <button type="submit">Zarejestruj</button>
         </form>
     </div>
-</main>
-
+ </main>
+    <script type="text/javascript" src="/public/js/register-validation.js"></script>
 <?php
     include 'toInclude/footer.php';
 ?>

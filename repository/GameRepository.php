@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Repository.php';
+
 require_once __DIR__.'/../models/Game.php';
 require_once __DIR__.'/../models/Rate.php';
 
@@ -8,19 +9,20 @@ class GameRepository extends Repository
 {
     public function getGame(string $id_game)
     {
-        $stmt = $this->database->connect()->prepare('
+        $stmt = $this->database->connect()->prepare
+        ('
         SELECT * FROM games WHERE id_game = :id_game
         ');
+
         $stmt->bindParam(':id_game', $id_game, PDO::PARAM_INT);
         $stmt->execute();
-
         $game = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($game == false) {
+        if ($game == false)
             return null;
-        }
 
-        return new Game(
+        return new Game
+        (
             $game['picture'],
             $game['name'],
             $game['platform'],
@@ -34,15 +36,19 @@ class GameRepository extends Repository
     public function getGames()
     {
         $result = array();
-        $stmt = $this->database->connect()->prepare('
+
+        $stmt = $this->database->connect()->prepare
+        ('
         SELECT * FROM view_getgames
         ');
-        $stmt->execute();
 
+        $stmt->execute();
         $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($games as $game) {
-            $result[] = new Game(
+        foreach ($games as $game)
+        {
+            $result[] = new Game
+            (
                 $game['picture'],
                 $game['name'],
                 $game['platform'],
@@ -53,17 +59,19 @@ class GameRepository extends Repository
                 $this->getRates($game['id_game'])
             );
         }
-
         return $result;
     }
 
     public function addGame(Game $game)
     {
         $dbh = $this->database->connect();
-        $stmt = $dbh->prepare('
+        $stmt = $dbh->prepare
+        ('
             INSERT INTO games (picture, name, platform, datepremiere, type, description) VALUES (?, ?, ?, ?, ?, ?)
         ');
-        $stmt->execute([
+
+        $stmt->execute
+        ([
             $game->getPicture(),
             $game->getName(),
             $game->getPlatform(),
@@ -77,24 +85,26 @@ class GameRepository extends Repository
     {
         $searchString = '%'.strtolower($searchString).'%';
 
-        $stmt = $this->database->connect()->prepare('
+        $stmt = $this->database->connect()->prepare
+        ('
         SELECT * FROM games WHERE LOWER(name) LIKE :search OR LOWER(description) LIKE :search
         ');
+
         $stmt->bindParam(':search', $searchString, PDO::PARAM_STR);
         $stmt->execute();
-
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function addRate(Rate $rate)
     {
         $dbh = $this->database->connect();
-//        $userDetailId = $dbh->lastInsertId();
-        $stmt = $dbh->prepare('
+        $stmt = $dbh->prepare
+        ('
             SELECT function_addrate(?, ?, ?)
         ');
 
-        $stmt->execute([
+        $stmt->execute
+        ([
             $rate->getGame(),
             $rate->getUser(),
             $rate->getRate()
@@ -104,19 +114,22 @@ class GameRepository extends Repository
     public function getRates(string $id_game)
     {
         $result = array();
-        $stmt = $this->database->connect()->prepare('
-        select id_rate, fk_game, fk_user, rate from rates left join games on rates.fk_game = games.id_game where fk_game = :id_game
+        $stmt = $this->database->connect()->prepare
+        ('
+        select fk_game, fk_user, rate from rates left join games on rates.fk_game = games.id_game where fk_game = :id_game
         ');
+
         $stmt->bindParam(':id_game', $id_game, PDO::PARAM_INT);
         $stmt->execute();
-
         $rates = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($rates == false) {
+        if ($rates == false)
             return null;
-        }
-        foreach ($rates as $rate) {
-            $result[] = new Rate(
+
+        foreach ($rates as $rate)
+        {
+            $result[] = new Rate
+            (
                 $rate['fk_game'],
                 $rate['fk_user'],
                 $rate['rate'],
@@ -127,20 +140,21 @@ class GameRepository extends Repository
 
     public function getRateUser(string $id_game, string $user_id)
     {
-        $stmt = $this->database->connect()->prepare('
-        select id_rate, fk_game, fk_user, rate from rates left join games on rates.fk_game = games.id_game where fk_game = :id_game AND fk_user = :user_id
+        $stmt = $this->database->connect()->prepare
+        ('
+        select fk_game, fk_user, rate from rates left join games on rates.fk_game = games.id_game where fk_game = :id_game AND fk_user = :user_id
         ');
+
         $stmt->bindParam(':id_game', $id_game, PDO::PARAM_INT);
         $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
         $stmt->execute();
-
         $rate = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($rate == false) {
+        if ($rate == false)
             return null;
-        }
 
-        return new Rate(
+        return new Rate
+        (
             $rate['fk_game'],
             $rate['fk_user'],
             $rate['rate'],

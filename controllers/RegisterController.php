@@ -1,12 +1,12 @@
 <?php
 
 require_once 'AppController.php';
+
 require_once __DIR__ .'/../models/User.php';
 require_once __DIR__.'/../repository/UserRepository.php';
 
-
-class RegisterController extends AppController {
-
+class RegisterController extends AppController
+{
     private $userRepository;
 
     public function __construct()
@@ -15,9 +15,10 @@ class RegisterController extends AppController {
         $this->userRepository = new UserRepository();
     }
 
-    public function register() {
-
-        if (!$this->isPost()) {
+    public function register()
+    {
+        if (!$this->isPost())
+        {
             return $this->render('register');
         }
 
@@ -28,19 +29,19 @@ class RegisterController extends AppController {
         $surname = $_POST['surname'];
         $role = 2;
 
-        if ($password !== $confirmedPassword) {
+        if ($password !== $confirmedPassword)
+        {
             return $this->render('register', ['messages' => ['Hasłą są różne']]);
         }
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+        {
             return $this->render('register', ['messages' => ['Niepoprawny adres email']]);
         }
 
         $user = new User($email, password_hash($password, PASSWORD_BCRYPT), $role, null, $name, $surname);
-
         $this->userRepository->addUser($user);
 
         return $this->render('login', ['messages' => ['Zarejestrowałeś się pomyślnie']]);
-
     }
 }

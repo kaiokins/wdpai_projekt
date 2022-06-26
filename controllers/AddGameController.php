@@ -1,11 +1,12 @@
 <?php
 
 require_once 'AppController.php';
+
 require_once __DIR__.'/../models/Game.php';
 require_once __DIR__.'/../repository/GameRepository.php';
 
-class AddGameController extends AppController {
-
+class AddGameController extends AppController
+{
     const MAX_FILE_SIZE = 1024*1024;
     const SUPPORTED_TYPES = ['image/png', 'image/jpeg'];
     const UPLOAD_DIRECTORY = '/public/uploads/';
@@ -36,7 +37,7 @@ class AddGameController extends AppController {
             $game = new Game($_FILES['file']['name'], $_POST['title'], $_POST['platform'], $_POST['datepremiere'], $_POST['type'], $_POST['description']);
             $this->gameRepository->addGame($game);
 
-            return $this->render("addgame", ['messages' => $this->messages]);
+            return $this->render("rangkin", ['messages' => $this->messages]);
         }
         return $this->render("addgame", ['messages' => $this->messages]);
     }

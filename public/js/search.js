@@ -1,8 +1,10 @@
 const search = document.querySelector('input[placeholder="Wyszukaj gry"]');
 const gameContainer = document.querySelector(".all-games");
 
-search.addEventListener("keyup", function (event) {
-    if (event.key === "Enter") {
+search.addEventListener("keyup", function (event)
+{
+    if (event.key === "Enter")
+    {
         event.preventDefault();
 
         const data = {search: this.value};
@@ -22,14 +24,17 @@ search.addEventListener("keyup", function (event) {
     }
 });
 
-function loadGames(games) {
-    games.forEach(game => {
+function loadGames(games)
+{
+    games.forEach(game =>
+    {
         console.log(game);
         createGame(game);
     });
 }
 
-function createGame(game) {
+function createGame(game)
+{
     const template = document.querySelector("#game-template");
     const clone = template.content.cloneNode(true);
 
