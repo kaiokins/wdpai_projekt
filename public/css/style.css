@@ -187,6 +187,12 @@ main.ranking-wrapper
     padding: 0 30px;
 }
 
+main.ranking-wrapper .sort-button:hover
+{
+    color: gray;
+    cursor: pointer;
+}
+
 main.ranking-wrapper input, div.sort, div.game
 {
     margin: 20px 0;

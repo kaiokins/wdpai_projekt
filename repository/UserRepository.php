@@ -9,7 +9,7 @@ class UserRepository extends Repository
     {
         $stmt = $this->database->connect()->prepare
         ('
-        SELECT * FROM users WHERE Email = :email
+        SELECT * FROM users WHERE email = :email
         ');
 
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);

@@ -18,9 +18,8 @@ class RegisterController extends AppController
     public function register()
     {
         if (!$this->isPost())
-        {
             return $this->render('register');
-        }
+
 
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -30,14 +29,11 @@ class RegisterController extends AppController
         $role = 2;
 
         if ($password !== $confirmedPassword)
-        {
             return $this->render('register', ['messages' => ['Hasłą są różne']]);
-        }
+
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-        {
             return $this->render('register', ['messages' => ['Niepoprawny adres email']]);
-        }
 
         $user = new User($email, password_hash($password, PASSWORD_BCRYPT), $role, null, $name, $surname);
         $this->userRepository->addUser($user);

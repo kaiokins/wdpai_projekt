@@ -24,12 +24,13 @@ class AddGameController extends AppController
         if(!isset($_SESSION['loggedUserRole']))
             header('Location: /');
 
-        if(isset($_SESSION['loggedUserRole']) && $_SESSION['loggedUserRole']!=1)
+        if(isset($_SESSION['loggedUserRole']) && $_SESSION['loggedUserRole'] != 1)
             return $this->render("permission");
 
         if($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file']))
         {
-            move_uploaded_file(
+            move_uploaded_file
+            (
                 $_FILES['file']['tmp_name'],
                 dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
             );
@@ -37,7 +38,7 @@ class AddGameController extends AppController
             $game = new Game($_FILES['file']['name'], $_POST['title'], $_POST['platform'], $_POST['datepremiere'], $_POST['type'], $_POST['description']);
             $this->gameRepository->addGame($game);
 
-            return $this->render("rangkin", ['messages' => $this->messages]);
+            return $this->render("addgame", ['messages' => $this->messages]);
         }
         return $this->render("addgame", ['messages' => $this->messages]);
     }
@@ -55,7 +56,6 @@ class AddGameController extends AppController
             $this->messages[] = 'Nieodpowiedni typ pliku';
             return false;
         }
-
         return true;
     }
 }

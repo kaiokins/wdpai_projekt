@@ -8,10 +8,10 @@
         <input placeholder="Wyszukaj gry">
 
         <div class="sort">
-              <p>Ocena <i class="fa-solid fa-sort-down"></i></p>
-              <p>Data premiery <i class="fa-solid fa-sort-down"></i></p>
-              <p>Platforma <i class="fa-solid fa-sort-down"></i></p>
-              <p>Rodzaj <i class="fa-solid fa-sort-down"></i></p>
+              <p class="sort-button" data-type="rate" data-asc="0">Ocena <i class="fa-solid fa-sort-down"></i></p>
+              <p class="sort-button" data-type="datepremiere" data-asc="0">Data premiery <i class="fa-solid fa-sort-down"></i></p>
+              <p class="sort-button" data-type="platform" data-asc="0">Platforma <i class="fa-solid fa-sort-down"></i></p>
+              <p class="sort-button" data-type="type" data-asc="0">Rodzaj <i class="fa-solid fa-sort-down"></i></p>
         </div>
 
       <div class="message">
@@ -47,15 +47,15 @@
                   </div>
 
                   <div class="game-rate">
-                        <div class="rate"><?= $game->getAvgRates() ?></div>
+                        <div class="rate"><?= (($game->getRates()) ? round($game->getRates()) : 0) ?></div>
                   </div>
 
                   <?php
                   if(isset($_SESSION['loggedUserId']))
                       echo '
                           <div class="game-rate-user">
-                              <form action="addRate" method="POST">
-                                  <input placeholder="(0-100)" min="0" max="100" type="number" name="user-rate">
+                              <form action="ranking" method="POST">
+                                  <input placeholder="(0-100)" min="0" max="100" type="number" class="rate-error" name="user-rate">
                                   <input type="hidden" name="game_id" value="'.$game->getId().'">
                                   <button type="submit">Oceń</button>
                               </form>
@@ -96,7 +96,7 @@
         if(isset($_SESSION['loggedUserId']))
             echo '
                   <div class="game-rate-user">
-                      <form action="addRate" method="POST">
+                      <form action="ranking" method="POST">
                           <input placeholder="(0-100)" min="0" max="100" type="number" name="user-rate">
                           <input type="hidden" name="game_id" value="'.$game->getId().'">
                           <button type="submit">Oceń</button>

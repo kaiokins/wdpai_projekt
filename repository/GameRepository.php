@@ -7,39 +7,13 @@ require_once __DIR__.'/../models/Rate.php';
 
 class GameRepository extends Repository
 {
-    public function getGame(string $id_game)
-    {
-        $stmt = $this->database->connect()->prepare
-        ('
-        SELECT * FROM games WHERE id_game = :id_game
-        ');
-
-        $stmt->bindParam(':id_game', $id_game, PDO::PARAM_INT);
-        $stmt->execute();
-        $game = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($game == false)
-            return null;
-
-        return new Game
-        (
-            $game['picture'],
-            $game['name'],
-            $game['platform'],
-            $game['datepremiere'],
-            $game['type'],
-            $game['description'],
-            $game['id_game'],
-        );
-    }
-
     public function getGames()
     {
         $result = array();
 
         $stmt = $this->database->connect()->prepare
         ('
-        SELECT * FROM view_getgames
+            select id_game, picture, name, platform, type, datepremiere,description, avg(rate) as rate from games left join rates on games.id_game = rates.fk_game GROUP BY id_game 
         ');
 
         $stmt->execute();
@@ -56,7 +30,7 @@ class GameRepository extends Repository
                 $game['type'],
                 $game['description'],
                 $game['id_game'],
-                $this->getRates($game['id_game'])
+                $game['rate']
             );
         }
         return $result;
@@ -87,11 +61,25 @@ class GameRepository extends Repository
 
         $stmt = $this->database->connect()->prepare
         ('
-        SELECT * FROM games WHERE LOWER(name) LIKE :search OR LOWER(description) LIKE :search
+        select id_game, picture, name, platform, type, datepremiere,description, avg(rate) as rate from games left join rates on games.id_game = rates.fk_game WHERE LOWER(name) LIKE :search OR LOWER(description) LIKE :search GROUP BY id_game order by id_game
         ');
 
         $stmt->bindParam(':search', $searchString, PDO::PARAM_STR);
         $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getGameBySort(string $sort, int $asc)
+    {
+
+        $stmt = $this->database->connect()->prepare
+        ('
+        select id_game, picture, name, platform, type, datepremiere,description, avg(rate) as rate from games left join rates on games.id_game = rates.fk_game GROUP BY id_game order by '.$sort.' '.(($asc) ? 'ASC' : 'DESC').'
+        ');
+
+        $stmt->execute();
+
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -109,33 +97,6 @@ class GameRepository extends Repository
             $rate->getUser(),
             $rate->getRate()
         ]);
-    }
-
-    public function getRates(string $id_game)
-    {
-        $result = array();
-        $stmt = $this->database->connect()->prepare
-        ('
-        select fk_game, fk_user, rate from rates left join games on rates.fk_game = games.id_game where fk_game = :id_game
-        ');
-
-        $stmt->bindParam(':id_game', $id_game, PDO::PARAM_INT);
-        $stmt->execute();
-        $rates = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        if ($rates == false)
-            return null;
-
-        foreach ($rates as $rate)
-        {
-            $result[] = new Rate
-            (
-                $rate['fk_game'],
-                $rate['fk_user'],
-                $rate['rate'],
-            );
-        }
-        return $result;
     }
 
     public function getRateUser(string $id_game, string $user_id)

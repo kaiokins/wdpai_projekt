@@ -14,7 +14,6 @@ class SecurityController extends AppController
         if (!$this->isPost())
             return $this->render('login');
 
-
         $email = $_POST['email'];
         $password = $_POST['password'];
 
@@ -32,7 +31,7 @@ class SecurityController extends AppController
 
         $_SESSION['loggedUserMail'] = $user->getEmail();
         $_SESSION['loggedUserRole'] = $user->getRole();
-        $_SESSION['loggedUserId'] = $user->getRole();
+        $_SESSION['loggedUserId'] = $user->getId();
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/");

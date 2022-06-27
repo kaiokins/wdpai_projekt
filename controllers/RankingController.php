@@ -18,7 +18,25 @@ class RankingController extends AppController
     public function ranking()
     {
         $games = $this->GameRepository->getGames();
-        $this->render('ranking', ['games' => $games]);
+
+        if (!$this->isPost() || !isset($_SESSION['loggedUserId']))
+            return  $this->render('ranking', ['games' => $games]);
+
+        $rate = $_POST['user-rate'];
+        $gameId = $_POST['game_id'];
+        $userId = $_SESSION['loggedUserId'];
+
+        if ($rate <= 0 || $rate > 100)
+            return $this->render('ranking', ['messages' => ['Zakres oceny to 0-100'], 'games' => $games]);
+
+        $userRate = $this->GameRepository->getRateUser($gameId, $userId);
+        if(isset($userRate))
+            return $this->render('ranking', ['messages' => ['Już oceniłeś tą gre'], 'games' => $games]);
+
+        $rated = new Rate($gameId, $userId, $rate);
+        $this->GameRepository->addRate($rated);
+        $games = $this->GameRepository->getGames();
+        return $this->render('ranking', ['games' => $games]);
     }
 
     public function search()
@@ -32,35 +50,10 @@ class RankingController extends AppController
 
             header('Content-type: application/json');
             http_response_code(200);
-
-            echo json_encode($this->GameRepository->getGameByName($decoded['search']));
+            if($decoded['fun'] == 'search')
+                echo json_encode($this->GameRepository->getGameByName($decoded['search']));
+            else
+                echo json_encode($this->GameRepository->getGameBySort($decoded['sort'],$decoded['asc']));
         }
-    }
-
-    public function addRate()
-    {
-        $games = $this->GameRepository->getGames();
-        if (!$this->isPost() || !isset($_SESSION['loggedUserId']))
-        {
-            return  $this->render('ranking', ['games' => $games]);
-        }
-
-        $rate = $_POST['user-rate'];
-        $gameId = $_POST['game_id'];
-        $userId = $_SESSION['loggedUserId'];
-
-        if ($rate <= 0 || $rate > 100)
-        {
-            return $this->render('ranking', ['messages' => ['Zakres oceny to 0-100'],'games' => $games]);
-        }
-
-        $userRate = $this->GameRepository->getRateUser($gameId,$userId);
-        if(isset($userRate))
-            return $this->render('ranking', ['messages' => ['Już oceniłeś tą gre'],'games' => $games]);
-
-        $rated = new Rate($gameId, $userId, $rate);
-        $this->GameRepository->addRate($rated);
-
-        return $this->render('ranking', ['games' => $games]);
     }
 }

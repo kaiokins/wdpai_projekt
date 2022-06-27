@@ -1,5 +1,5 @@
 const form = document.querySelector('form');
-const typeRateInput = form.querySelector('input[name="user-rate"]');
+const typeRateInput = document.querySelectorAll('.rate-error');
 
 function correctRange(typeRate)
 {
@@ -11,13 +11,16 @@ function markValidation(element, condition)
     !condition ? element.classList.add('no-valid') : element.classList.remove('no-valid');
 }
 
-function validateTypeRate()
+function validateTypeRate(element)
 {
     setTimeout(function ()
         {
-            markValidation(typeRateInput, correctRange(typeRateInput.value));
+            markValidation(element, correctRange(element.value));
         },
         1000);
 }
-
-typeRateInput.addEventListener('keyup', validateTypeRate);
+typeRateInput.forEach((elem) => {
+    elem.addEventListener('keyup', function () {
+        validateTypeRate(elem);
+    });
+})
